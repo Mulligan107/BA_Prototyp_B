@@ -1,19 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Spielersteuerung in acht Richtungen (FA-01) sowie Lebenspunkte,
-/// Schadensverarbeitung (FA-06) und Unverwundbarkeitsphase (FA-14).
-/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
-    [SerializeField] private float moveSpeed = 5f;                  // PW-01
-    [SerializeField] private int maxHealth = 10;                    // PW-10
-    [SerializeField] private float invulnerabilityDuration = 0.5f;  // PW-23
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private float invulnerabilityDuration = 0.5f;
 
     public int MaxHealth { get { return maxHealth; } }
     public int CurrentHealth { get; private set; }
@@ -49,8 +45,7 @@ public class PlayerController : MonoBehaviour
 
         body.MovePosition(target);
     }
-
-    /// <summary>Liest WASD und Pfeiltasten aus; diagonale Eingaben ergeben acht Richtungen.</summary>
+    
     private Vector2 ReadMoveInput()
     {
         Keyboard keyboard = Keyboard.current;
@@ -81,8 +76,7 @@ public class PlayerController : MonoBehaviour
 
         return new Vector2(x, y).normalized;
     }
-
-    /// <summary>Zieht Lebenspunkte ab, sofern die Unverwundbarkeitsphase abgelaufen ist (FA-14).</summary>
+    
     public void TakeDamage(int amount)
     {
         if (CurrentHealth <= 0 || Time.time < invulnerableUntil)
@@ -96,18 +90,18 @@ public class PlayerController : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0;
-            GameManager.Instance.EndRound(); // FA-12
+            GameManager.Instance.EndRound();
         }
     }
 
     public void IncreaseMaxHealth(int amount)
     {
-        maxHealth += amount; // PW-17
+        maxHealth += amount;
         CurrentHealth += amount;
     }
 
     public void IncreaseMoveSpeed(float amount)
     {
-        moveSpeed += amount; // PW-18
+        moveSpeed += amount;
     }
 }

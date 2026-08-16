@@ -1,15 +1,12 @@
 using UnityEngine;
 
-/// <summary>
-/// Erzeugt ohne Benutzereingabe in festem Intervall Projektile in Richtung des nächsten Gegners (FA-02).
-/// </summary>
 public class PlayerShooter : MonoBehaviour
 {
     [SerializeField] private Projectile projectilePrefab;
-    [SerializeField] private float shootInterval = 0.5f;    // PW-02
-    [SerializeField] private float projectileSpeed = 8f;    // PW-03
-    [SerializeField] private int projectileDamage = 1;      // PW-04
-    [SerializeField] private float projectileRadius = 0.2f; // PW-25
+    [SerializeField] private float shootInterval = 0.5f;
+    [SerializeField] private float projectileSpeed = 8f;
+    [SerializeField] private int projectileDamage = 1;
+    [SerializeField] private float projectileRadius = 0.2f;
 
     public float ProjectileSpeed { get { return projectileSpeed; } }
     public int ProjectileDamage { get { return projectileDamage; } }
@@ -56,15 +53,14 @@ public class PlayerShooter : MonoBehaviour
 
     public void IncreaseProjectileSpeed(float amount)
     {
-        projectileSpeed += amount; // PW-19
+        projectileSpeed += amount;
     }
 
     public void IncreaseProjectileDamage(int amount)
     {
-        projectileDamage += amount; // PW-20
+        projectileDamage += amount;
     }
-
-    /// <summary>Erhöht den Projektilradius um einen Anteil des Ausgangswerts (PW-21).</summary>
+    
     public void IncreaseProjectileRadius(float percentOfBaseValue)
     {
         projectileRadius += baseProjectileRadius * percentOfBaseValue;

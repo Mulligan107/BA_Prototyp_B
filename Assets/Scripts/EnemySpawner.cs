@@ -1,20 +1,17 @@
 using UnityEngine;
 
-/// <summary>
-/// Erzeugt Gegnerwellen am Rand des Spielbereichs (FA-03) und skaliert die Schwierigkeit zeitbasiert (FA-04).
-/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Enemy enemyPrefab;
-    [SerializeField] private float waveInterval = 10f;          // PW-05
-    [SerializeField] private int baseEnemiesPerWave = 10;       // PW-06
-    [SerializeField] private int additionalEnemiesPerStep = 5;  // PW-07
-    [SerializeField] private float countStepInterval = 30f;     // PW-07
-    [SerializeField] private int baseEnemyHealth = 2;           // PW-11
-    [SerializeField] private int additionalHealthPerStep = 1;   // PW-08
-    [SerializeField] private float baseEnemySpeed = 3f;         // PW-24
-    [SerializeField] private float additionalSpeedPerStep = 0.5f; // PW-09
-    [SerializeField] private float statStepInterval = 60f;      // PW-08, PW-09
+    [SerializeField] private float waveInterval = 10f;
+    [SerializeField] private int baseEnemiesPerWave = 10;
+    [SerializeField] private int additionalEnemiesPerStep = 5;
+    [SerializeField] private float countStepInterval = 30f;
+    [SerializeField] private int baseEnemyHealth = 2;
+    [SerializeField] private int additionalHealthPerStep = 1;
+    [SerializeField] private float baseEnemySpeed = 3f;
+    [SerializeField] private float additionalSpeedPerStep = 0.5f;
+    [SerializeField] private float statStepInterval = 60f;
 
     private float timer;
 
@@ -56,8 +53,7 @@ public class EnemySpawner : MonoBehaviour
             enemy.Initialize(enemyHealth, enemySpeed);
         }
     }
-
-    /// <summary>Liefert eine zufällige Position auf dem gesamten Rand des Spielbereichs (PW-28).</summary>
+    
     private Vector2 GetRandomBorderPosition()
     {
         Vector2 min = GameManager.Instance.PlayAreaMin;

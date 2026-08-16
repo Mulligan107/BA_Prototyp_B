@@ -1,16 +1,13 @@
 using UnityEngine;
 
-/// <summary>
-/// Zentrale Rundenverwaltung: Rundenzeit, Punktesystem (FA-07) und Spielende (FA-12, FA-13).
-/// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Vector2 playAreaSize = new Vector2(25f, 25f); // RB-05
-    [SerializeField] private float maxRoundDuration = 600f;                // PW-22
-    [SerializeField] private int pointsPerKill = 10;                       // PW-13
-    [SerializeField] private int pointsPerSurvivedSecond = 1;              // PW-14
+    [SerializeField] private Vector2 playAreaSize = new Vector2(25f, 25f);
+    [SerializeField] private float maxRoundDuration = 600f;
+    [SerializeField] private int pointsPerKill = 10;
+    [SerializeField] private int pointsPerSurvivedSecond = 1;
 
     public event System.Action RoundEnded;
 
@@ -52,15 +49,13 @@ public class GameManager : MonoBehaviour
             EndRound();
         }
     }
-
-    /// <summary>Wird bei jedem besiegten Gegner aufgerufen (PW-13).</summary>
+    
     public void RegisterKill()
     {
         Kills++;
         Score += pointsPerKill;
     }
-
-    /// <summary>Beendet die laufende Runde und friert das Spielgeschehen ein.</summary>
+    
     public void EndRound()
     {
         if (IsRoundOver)

@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Stellt Spielstatus, Upgrade-Menü (FA-08, FA-10) und Endbildschirm (FA-11) dar.
-/// </summary>
 public class GameUI : MonoBehaviour
 {
     [SerializeField] private UpgradeManager upgradeManager;
@@ -54,8 +51,7 @@ public class GameUI : MonoBehaviour
         scoreText.text = "Punkte: " + game.Score;
         timeText.text = "Zeit: " + FormatTime(game.RoundTime);
     }
-
-    /// <summary>Zeigt die übergebenen Optionen mit Titel und Wirkungsbeschreibung an.</summary>
+    
     public void ShowUpgradeMenu(List<UpgradeType> options)
     {
         currentOptions.Clear();

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>Die fünf vordefinierten Upgrade-Kategorien (FA-09).</summary>
 public enum UpgradeType
 {
     PlayerHealth,
@@ -11,20 +10,16 @@ public enum UpgradeType
     ProjectileSize
 }
 
-/// <summary>
-/// Blendet in festen Zeitabständen ein Upgrade-Menü ein (FA-08), bietet drei Optionen
-/// aus dem definierten Pool an (FA-09) und wendet den gewählten Effekt kumulativ an.
-/// </summary>
 public class UpgradeManager : MonoBehaviour
 {
     [SerializeField] private GameUI gameUI;
-    [SerializeField] private float upgradeInterval = 30f;              // PW-15
-    [SerializeField] private int optionsPerEvent = 3;                  // PW-16
-    [SerializeField] private int maxHealthBonus = 3;                   // PW-17
-    [SerializeField] private float moveSpeedBonus = 1f;                // PW-18
-    [SerializeField] private float projectileSpeedBonus = 1f;          // PW-19
-    [SerializeField] private int projectileDamageBonus = 1;            // PW-20
-    [SerializeField] private float projectileRadiusBonusPercent = 0.25f; // PW-21
+    [SerializeField] private float upgradeInterval = 30f;
+    [SerializeField] private int optionsPerEvent = 3;
+    [SerializeField] private int maxHealthBonus = 3; 
+    [SerializeField] private float moveSpeedBonus = 1f;
+    [SerializeField] private float projectileSpeedBonus = 1f;
+    [SerializeField] private int projectileDamageBonus = 1;
+    [SerializeField] private float projectileRadiusBonusPercent = 0.25f;
 
     public bool IsMenuOpen { get; private set; }
 
@@ -59,11 +54,11 @@ public class UpgradeManager : MonoBehaviour
     private void OpenMenu()
     {
         IsMenuOpen = true;
-        Time.timeScale = 0f; // PW-15: das Menü pausiert die Zeit
+        Time.timeScale = 0f;
         gameUI.ShowUpgradeMenu(PickOptions());
     }
 
-    /// <summary>Wählt zufällig die geforderte Anzahl unterschiedlicher Kategorien aus dem Pool.</summary>
+    
     private List<UpgradeType> PickOptions()
     {
         List<UpgradeType> remaining = new List<UpgradeType>(pool);
@@ -79,8 +74,7 @@ public class UpgradeManager : MonoBehaviour
 
         return options;
     }
-
-    /// <summary>Wendet die gewählte Option an und setzt das Spiel fort (PW-26, PW-27).</summary>
+    
     public void SelectUpgrade(UpgradeType type)
     {
         if (!IsMenuOpen)
@@ -136,8 +130,7 @@ public class UpgradeManager : MonoBehaviour
                 return "Projektilgröße";
         }
     }
-
-    /// <summary>Beschreibung der konkreten Wirkung einer Option (FA-10).</summary>
+    
     public string GetDescription(UpgradeType type)
     {
         switch (type)

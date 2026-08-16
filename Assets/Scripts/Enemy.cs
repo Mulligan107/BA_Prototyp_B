@@ -1,21 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Standardgegner: läuft auf den Spieler zu (FA-15), verursacht bei Kontakt Schaden (FA-05, FA-06)
-/// und besitzt eigene Lebenspunkte.
-/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 public class Enemy : MonoBehaviour
 {
     private static readonly List<Enemy> activeEnemies = new List<Enemy>();
 
-    [SerializeField] private int contactDamage = 1; // PW-12
+    [SerializeField] private int contactDamage = 1;
 
     private Rigidbody2D body;
-    private int health = 2;      // PW-11
-    private float moveSpeed = 3f; // PW-24
+    private int health = 2;
+    private float moveSpeed = 3f;
 
     private void Awake()
     {
@@ -31,8 +27,7 @@ public class Enemy : MonoBehaviour
     {
         activeEnemies.Remove(this);
     }
-
-    /// <summary>Setzt die vom Spawner ermittelten Werte für Lebenspunkte und Tempo.</summary>
+    
     public void Initialize(int startHealth, float startSpeed)
     {
         health = startHealth;
@@ -69,8 +64,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    /// <summary>Liefert den zur Position nächstgelegenen Gegner oder null.</summary>
+    
     public static Enemy FindNearest(Vector3 position)
     {
         Enemy nearest = null;
